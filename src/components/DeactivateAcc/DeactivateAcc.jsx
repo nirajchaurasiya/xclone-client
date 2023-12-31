@@ -68,7 +68,7 @@ export default function DeactivateAcc() {
         <div className="deactivate_acc_desc">
           You’re about to start the process of deactivating your Xclone account.
           Your display name ,<br /> @username, and public profile will no longer
-          be viewable on Xclone.com.
+          be viewable on Xclone.xyz.
         </div>
         <br />
         <div className="border_bottom"></div>
