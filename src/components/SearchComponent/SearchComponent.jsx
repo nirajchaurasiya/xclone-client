@@ -3,6 +3,7 @@ import "../LikedUser/LikedUser.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Loader from "../Loader/InfoLoader";
+import { VerifiedAcccount } from "../../TweetCard/TweetCard";
 export default function SearchComponent({ searchQuery }) {
   const backendURL = process.env.REACT_APP_BACKEND_URL;
   const [isLoading, setIsLoading] = useState(false);
@@ -56,7 +57,20 @@ export default function SearchComponent({ searchQuery }) {
                   <div className="friend_suggestion_image">
                     <img src={`${e?.profilepicture}`} alt="" />
                     <div className="friend_suggestion_credentials">
-                      <p>{e?.fullname}</p>
+                      <div
+                        style={{
+                          display: "flex",
+                          gap: "2px",
+                        }}
+                      >
+                        <p>{e?.fullname}</p>
+                        <p
+                          title="Verified"
+                          style={{ width: "15px", marginTop: "2px" }}
+                        >
+                          <VerifiedAcccount />
+                        </p>
+                      </div>
                       <p className="friend_suggestion_username">
                         @{e?.username}
                       </p>

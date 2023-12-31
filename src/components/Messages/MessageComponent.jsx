@@ -4,6 +4,7 @@ import { customTimeFormat } from "../customTime/customTime";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import PeopleSkeleton from "../PeopleSkeleton/PeopleSkeleton";
+import { VerifiedAcccount } from "../../TweetCard/TweetCard";
 
 export default function MessageComponent({ userId }) {
   const backendURL = process.env.REACT_APP_BACKEND_URL;
@@ -39,12 +40,22 @@ export default function MessageComponent({ userId }) {
       </div>
       <div className="msg_user_credentials">
         <div className="user_info_msg">
-          <p>
-            {user?.name}{" "}
+          <div>
+            <div
+              style={{
+                display: "flex",
+                gap: "2px",
+              }}
+            >
+              <p>{user?.fullname} </p>
+              <p title="Verified" style={{ width: "15px", marginTop: "2px" }}>
+                <VerifiedAcccount />
+              </p>
+            </div>
             <span>
               @{user?.username} . {customTimeFormat(user?.createdAt)}{" "}
             </span>
-          </p>
+          </div>
         </div>
         <div className="actual_msg" style={{ color: "rgb(139, 152, 165)" }}>
           <p>

@@ -3,6 +3,7 @@ import "./SuggestionFriends.css";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../../useContext/AuthContext/AuthContext";
+import { VerifiedAcccount } from "../../TweetCard/TweetCard";
 export default function SuggestionsFriendFollowing() {
   const navigate = useNavigate();
   const { username } = useParams();
@@ -47,7 +48,20 @@ export default function SuggestionsFriendFollowing() {
               <div className="friend_suggestion_image">
                 <img src={`${e?.profilepicture}`} alt="" />
                 <div className="friend_suggestion_credentials">
-                  <p>{e?.fullname}</p>
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: "2px",
+                    }}
+                  >
+                    <p>{e?.fullname}</p>
+                    <p
+                      title="Verified"
+                      style={{ width: "15px", marginTop: "2px" }}
+                    >
+                      <VerifiedAcccount />
+                    </p>
+                  </div>
                   <p className="friend_suggestion_username">@{e?.username}</p>
                 </div>
               </div>

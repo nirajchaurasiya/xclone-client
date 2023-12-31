@@ -12,6 +12,7 @@ import { AuthContext } from "../../useContext/AuthContext/AuthContext";
 import { convertDate } from "../CovertDateTime/ConvertDateTime";
 import axios from "axios";
 import Loader from "../Loader/InfoLoader";
+import { VerifiedAcccount } from "../../TweetCard/TweetCard";
 export default function SingleMessagesBox({ socket }) {
   const [, , , , userData, , , , , , , , , , , ,] = useContext(AuthContext);
   const [allMessages, setAllMessages] = useContext(MessageContext);
@@ -134,7 +135,15 @@ export default function SingleMessagesBox({ socket }) {
                     <img src={profileData?.profilepicture} alt="" />
                   </div>
                   <div className="messsage_username_name">
-                    <p>{profileData?.fullname}</p>
+                    <div style={{ display: "flex", gap: "2px" }}>
+                      <p>{profileData?.fullname}</p>
+                      <p
+                        title="Verified"
+                        style={{ width: "15px", marginTop: "2px" }}
+                      >
+                        <VerifiedAcccount />
+                      </p>
+                    </div>
                     <span>@{profileData?.username}</span>
                   </div>
                   <div className="message_user_bio">
