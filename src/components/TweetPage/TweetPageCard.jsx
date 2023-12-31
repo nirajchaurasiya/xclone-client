@@ -16,6 +16,7 @@ import { BookMark, BookMarked } from "../../all-constant/Bookmark";
 import { addBookMark, removeBookMark } from "./allFunctions";
 import MsgAlert from "../MsgAlertComp/MsgAlert";
 import TopComponent from "../TopComponent/TopComponent";
+import { VerifiedAcccount } from "../../TweetCard/TweetCard";
 export default function TweetPageCard({ tweetdata, socket }) {
   const [bookmarkSign, setBookmarkSign] = useState(<BookMark />);
   const [likeBtn, setLikeBtn] = useState(<UnlikeBtn />);
@@ -174,8 +175,20 @@ export default function TweetPageCard({ tweetdata, socket }) {
                   <img src={specifictweetPage.authorProfile} alt="" />
                 </div>
                 <div className="profile_user_name margin_top_1">
-                  <Link to={`/p/${specifictweetPage?.authorUsername}`}>
+                  <Link
+                    to={`/p/${specifictweetPage?.authorUsername}`}
+                    style={{
+                      display: "flex",
+                      gap: "2px",
+                    }}
+                  >
                     <p>{specifictweetPage.authorName}</p>
+                    <p
+                      title="Verified"
+                      style={{ width: "15px", marginTop: "2px" }}
+                    >
+                      <VerifiedAcccount />
+                    </p>
                   </Link>
                   <span>@{specifictweetPage.authorUsername}</span>
                 </div>

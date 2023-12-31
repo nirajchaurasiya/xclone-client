@@ -8,6 +8,7 @@ import { TweetContext } from "../../useContext/TweetContext/TweetContext";
 import { AllTweetContext } from "../../useContext/AllTweetContext/AllTweetContextProvider";
 import DeactivateProfileAcc from "./DeactivatedProfile";
 import NeedsToActivate from "../NeedsToActivate/NeedsToActivate";
+import { VerifiedAcccount } from "../../TweetCard/TweetCard";
 export default function ProfileLayout({
   with_replies,
   highlights,
@@ -155,7 +156,15 @@ export default function ProfileLayout({
                 </g>
               </svg>
               <div className="top_tweetname">
-                <p>{specificUserProfile?.fullname}</p>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <p>{specificUserProfile?.fullname}</p>
+                  <p
+                    title="Verified"
+                    style={{ width: "11px", marginBottom: "-4px" }}
+                  >
+                    <VerifiedAcccount />
+                  </p>
+                </div>
                 <span>
                   {allTweets?.filter(
                     (e) => e?.authorId === specificUserProfile?._id
@@ -216,12 +225,26 @@ export default function ProfileLayout({
               {/* name? username */}
               <div className="profile_data">
                 <div className="name_username">
-                  <p>
-                    {specificUserProfile?.fullname}{" "}
+                  <div>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "4px",
+                      }}
+                    >
+                      {specificUserProfile?.fullname}
+                      <p
+                        title="Verified"
+                        style={{ width: "16px", marginTop: "1px" }}
+                      >
+                        <VerifiedAcccount />
+                      </p>
+                    </div>
                     {specificUserProfile?.following?.some(
                       (user) => user.id === userData?._id
                     ) && <span className="follows_you">follows you</span>}
-                  </p>
+                  </div>
                   <span>@{specificUserProfile?.username}</span>
                 </div>
 

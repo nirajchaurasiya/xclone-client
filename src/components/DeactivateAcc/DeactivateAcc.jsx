@@ -55,10 +55,7 @@ export default function DeactivateAcc() {
           }}
         >
           <div className="deactivate_acc_profile">
-            <img
-              src={`${backendURL}/${userData?.profilepicture}`}
-              alt="profile"
-            />
+            <img src={`${userData?.profilepicture}`} alt="profile" />
           </div>
           <div className="deactivate_acc_name">
             <p>{userData?.fullname}</p>
