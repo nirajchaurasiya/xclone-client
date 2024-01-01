@@ -92,6 +92,10 @@ const routes = [
     element: <Layout changePassword={true} />,
   },
   {
+    path: "/settings/account/admin-panel",
+    element: <Layout adminPanel={true} />,
+  },
+  {
     path: "/settings/account/tweet-privacy",
     element: <Layout tweetPrivacy={true} />,
   },

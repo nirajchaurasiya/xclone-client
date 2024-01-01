@@ -1,0 +1,27 @@
+.admin-panel-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.admin-panel-container h3 {
+  padding: 5px 0;
+}
+.admin-panel-container .button {
+  padding: 5px 0;
+}
+
+.admin-panel-container p {
+  padding: 5px 0;
+}
+
+.admin-panel-container button {
+  padding: 10px 0;
+  background-color: var(--theme-color);
+  color: white;
+  font-weight: 600;
+  font-size: 17px;
+  border-radius: 20px;
+  border: 0;
+  width: 100%;
+}

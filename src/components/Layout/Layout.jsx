@@ -1,4 +1,5 @@
 import { AllTweetContext } from "../../useContext/AllTweetContext/AllTweetContextProvider";
+import Admin from "../Admin/Admin";
 import ForgotPass from "../ForgotPass/ForgotPass";
 import ProfilePost from "../ProfilePost/ProfilePost";
 import {
@@ -69,6 +70,7 @@ export default function Layout({
   settings,
   changePassword,
   tweetPrivacy,
+  adminPanel,
   pageNotFound,
   update_username,
   update_phone,
@@ -174,6 +176,7 @@ export default function Layout({
       update_dob={update_dob}
       name={name}
       deactivateAcc={deactivateAcc}
+      adminPanel={adminPanel}
     >
       {tweetFields && <TweetFields socket={socket} />}
 
@@ -267,6 +270,7 @@ export default function Layout({
       {update_gender && <UpdateGender />}
       {update_dob && <UpdateBirthDate />}
       {deactivateAcc && <DeactivateAcc />}
+      {adminPanel && <Admin />}
     </Home>
   );
 }

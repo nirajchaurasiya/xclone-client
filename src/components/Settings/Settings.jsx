@@ -19,6 +19,10 @@ const options = [
     title: "Forgot Password",
     link: "/settings/account/forgot-password",
   },
+  {
+    title: "Admin Panel",
+    link: "/settings/account/admin-panel",
+  },
 ];
 export default function Settings() {
   useEffect(() => {

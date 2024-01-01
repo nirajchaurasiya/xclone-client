@@ -26,6 +26,7 @@ export default function Home({
   update_dob,
   name,
   deactivateAcc,
+  adminPanel,
   forgotPass,
 }) {
   const { userId } = useParams();
@@ -127,7 +128,8 @@ export default function Home({
           update_dob ||
           name ||
           deactivateAcc ||
-          forgotPass ? (
+          forgotPass ||
+          adminPanel ? (
           <>
             <div className={` ${"rightbar"} `}>
               {location.pathname === "/settings" ? (
@@ -163,6 +165,7 @@ export default function Home({
                   update_dob ||
                   name ||
                   deactivateAcc ||
+                  adminPanel ||
                   forgotPass ? (
                     <Settings />
                   ) : (
