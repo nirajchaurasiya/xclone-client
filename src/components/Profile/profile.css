@@ -179,7 +179,7 @@
 @media (max-width: 500px) {
   .user_profile img {
     width: 90px;
-    height: 100%;
+    height: 90px;
     border-radius: 100%;
     object-fit: cover;
     border: 4px solid rgb(87, 90, 91);

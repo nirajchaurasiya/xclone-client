@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { convertDate } from "../CovertDateTime/ConvertDateTime";
 import { customTimeFormat } from "../customTime/customTime";
 import { useEffect, useState } from "react";
@@ -6,33 +6,39 @@ import axios from "axios";
 import PeopleSkeleton from "../PeopleSkeleton/PeopleSkeleton";
 import { VerifiedAcccount } from "../../TweetCard/TweetCard";
 
-export default function MessageComponent({ userId }) {
+export default function MessageComponent({ userIdFromDatabase }) {
   const backendURL = process.env.REACT_APP_BACKEND_URL;
   const navigate = useNavigate();
   const [user, setUser] = useState({});
   const [loader, setLoader] = useState(true);
+  const { userId } = useParams();
   useEffect(() => {
-    async function fetchUserWithId(userId) {
+    async function fetchUserWithId(userIdFromDatabase) {
       try {
-        axios.get(`${backendURL}/user/auth/getUser/${userId}`).then((data) => {
-          const res = data.data;
-          if (res.status === 1) {
-            setUser(res.data);
-            setLoader(false);
-          }
-        });
+        axios
+          .get(`${backendURL}/user/auth/getUser/${userIdFromDatabase}`)
+          .then((data) => {
+            const res = data.data;
+            if (res.status === 1) {
+              setUser(res.data);
+              setLoader(false);
+            }
+          });
       } catch (error) {
         setLoader(false);
       }
     }
-    fetchUserWithId(userId);
-  }, [userId]);
+    fetchUserWithId(userIdFromDatabase);
+  }, [userIdFromDatabase]);
 
   return loader ? (
     <PeopleSkeleton />
   ) : (
     <div
-      className="single_message"
+      className={
+        "single_message " +
+        `${userIdFromDatabase === userId && "active_single_message"}`
+      }
       onClick={() => navigate(`/messages/${user._id}`)}
     >
       <div className="message_profile">

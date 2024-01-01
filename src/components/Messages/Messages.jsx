@@ -25,7 +25,7 @@ export default function Messages() {
         <div className="messages_mid_container">
           {userData?.userHasChatted?.length > 0 ? (
             userData?.userHasChatted?.map((e) => (
-              <MessageComponent key={e._id} userId={e.user_id} />
+              <MessageComponent key={e._id} userIdFromDatabase={e.user_id} />
             ))
           ) : (
             <div

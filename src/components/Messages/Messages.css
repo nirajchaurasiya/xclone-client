@@ -23,6 +23,11 @@
 .single_message:hover {
   background-color: var(--theme-hover-color);
 }
+
+.active_single_message {
+  background-color: var(--theme-hover-color);
+}
+
 .single_message {
   display: flex;
   cursor: pointer;
