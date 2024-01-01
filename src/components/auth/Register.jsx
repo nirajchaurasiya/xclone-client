@@ -35,6 +35,9 @@ export default function Register({ name, email }) {
       [name]: type === "file" ? e.target.files[0] : value,
     });
   };
+  useEffect(() => {
+    document.title = "Xclone / Login / Register";
+  }, []);
 
   const statusHandlers = {
     0: () => {

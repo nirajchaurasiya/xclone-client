@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ImCross } from "react-icons/im";
 import axios from "axios";
 import "./login.css";
@@ -109,9 +109,11 @@ export default function Login() {
       }
     }
   };
+
   if (show_deactivation_prompt_to_activate === true) {
     return <ShowDeactivationPromptToActivate />;
   }
+
   return (
     <>
       <div className="login_page">

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./auth.css";
 import Login from "./Login";
 import Register from "./Register";
@@ -77,6 +77,9 @@ export default function Auth() {
       setLoader(false);
     }
   };
+  useEffect(() => {
+    document.title = "Xclone / Login / Register";
+  }, []);
 
   return (
     <>
