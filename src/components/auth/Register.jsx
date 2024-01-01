@@ -170,7 +170,7 @@ export default function Register({ name, email }) {
                       onChange={handleInputChange}
                       type="email"
                       required
-                      placeholder="Enter email"
+                      placeholder="Enter email *"
                     />
                     <br />
                     <br />
@@ -180,7 +180,7 @@ export default function Register({ name, email }) {
                       onChange={handleInputChange}
                       type="text"
                       required
-                      placeholder="Enter full name"
+                      placeholder="Enter full name *"
                     />
                     <br />
                     <br />
@@ -190,7 +190,7 @@ export default function Register({ name, email }) {
                       onChange={handleInputChange}
                       required
                       type="password"
-                      placeholder="Enter password"
+                      placeholder="Enter password *"
                     />
                     <br />
                     <br />
@@ -200,7 +200,7 @@ export default function Register({ name, email }) {
                       onChange={handleInputChange}
                       type="text"
                       required
-                      placeholder="Enter bio"
+                      placeholder="Enter bio *"
                     />
                     <br />
                     <div className="social_media_btn">
@@ -237,7 +237,7 @@ export default function Register({ name, email }) {
                       value={formData.location}
                       onChange={handleInputChange}
                       type="text"
-                      placeholder="Enter your location"
+                      placeholder="Enter your location *"
                     />
                     <br />
                     <br />
@@ -255,8 +255,11 @@ export default function Register({ name, email }) {
                       value={formData.gender}
                       onChange={handleInputChange}
                       type="text"
-                      placeholder="Gender"
+                      placeholder="Gender *"
                     />
+                    <br />
+                    <br />
+                    <label>Your birthday *</label>
                     <br />
                     <br />
                     <input
@@ -301,8 +304,11 @@ export default function Register({ name, email }) {
                       value={formData.username}
                       onChange={handleInputChange}
                       type="text"
-                      placeholder="Enter username"
+                      placeholder="Enter username *"
                     />
+                    <br />
+                    <br />
+                    <label>Profile Picture *</label>
                     <br />
                     <br />
                     <input
@@ -319,7 +325,6 @@ export default function Register({ name, email }) {
                         />
                       )}
                     </div>
-
                     <div className="social_media_btn">
                       <button
                         onClick={() => {
