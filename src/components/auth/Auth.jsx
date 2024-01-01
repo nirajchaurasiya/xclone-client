@@ -5,13 +5,19 @@ import Register from "./Register";
 import { AuthContext } from "../../useContext/AuthContext/AuthContext";
 import jwt_decode from "jwt-decode";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
+import { ImCross } from "react-icons/im";
+import axios from "axios";
+import { InfoLoader } from "../Loader/InfoLoader";
 export default function Auth() {
   const [showLogin, setShowLogin, showRegister, setShowRegister] =
     useContext(AuthContext);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [is_verified, setIs_verified] = useState(false);
+  const [sendTheLink, setSendTheLink] = useState(false);
   const REACT_APP_GOOGLE_CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
+  const backendURL = process.env.REACT_APP_BACKEND_URL;
+  const [loader, setLoader] = useState(false);
   const toogleLoginMenu = () => {
     setShowLogin(!showLogin);
   };
@@ -34,6 +40,44 @@ export default function Auth() {
   const handleGithubLogin = () => {
     window.location.href = `https://github.com/login/oauth/authorize?client_id=${REACT_APP_GITHUB_CLIENT_ID}&scope=read:user,user:email`;
   };
+
+  const sendLoginLinkAgain = async (e) => {
+    setLoader(true);
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(
+        `${backendURL}/send-email/sendActivationLink`,
+        {
+          email: email,
+        }
+      );
+
+      const linkMsgElement = document.querySelector("#link_msg");
+      while (linkMsgElement.firstChild) {
+        linkMsgElement.removeChild(linkMsgElement.firstChild);
+      }
+      const paragraph = document.createElement("p");
+      paragraph.innerText = response.data.msg;
+      linkMsgElement.insertAdjacentElement("afterbegin", paragraph);
+    } catch (error) {
+      // Handle errors
+      const linkMsgElement = document.querySelector("#link_msg");
+
+      // Clear previous paragraphs
+      while (linkMsgElement.firstChild) {
+        linkMsgElement.removeChild(linkMsgElement.firstChild);
+      }
+
+      // Create a new paragraph element for the error message
+      const errorParagraph = document.createElement("p");
+      errorParagraph.innerText = "Something went wrong!";
+      linkMsgElement.insertAdjacentElement("afterbegin", errorParagraph);
+    } finally {
+      setLoader(false);
+    }
+  };
+
   return (
     <>
       <div
@@ -88,13 +132,27 @@ export default function Auth() {
                 </button>
               </div>
             </div>
-            <div className="auth_msg">
+            {/* <div className="auth_msg">
               By signing up, you agree to the <span>Terms of Service</span> and
               <span>Privacy Policy</span>, including <span>Cookie Use</span>.
-            </div>
+            </div> */}
             <div className="login_btn">
               <h3>Already have an account?</h3>
               <button onClick={toogleLoginMenu}>Sign in</button>
+            </div>
+            <div className="login_btn">
+              <h3>Didn't get email to verify?</h3>
+              <div className="auth_msg">
+                Click here if you didn't get mail to activate your account!
+              </div>
+              <button
+                className="send-link-to-verify"
+                onClick={() => {
+                  setSendTheLink(!sendTheLink);
+                }}
+              >
+                Send the link
+              </button>
             </div>
           </div>
         </div>
@@ -134,6 +192,47 @@ export default function Auth() {
       {showLogin && <Login />}
       {showRegister && (
         <Register name={name} email={email} is_verified={is_verified} />
+      )}
+      {sendTheLink && (
+        <div className="send_the_link_container">
+          <div className="send_the_link_mid_container">
+            <div className="send_the_link_mid_container_cross">
+              <ImCross
+                id="cross"
+                onClick={() => {
+                  setSendTheLink(!sendTheLink);
+                }}
+              />
+              <h2>Enter your email to check!</h2>
+            </div>
+            <br />
+            <div className="verify_password_container_input">
+              <form onSubmit={sendLoginLinkAgain}>
+                <div className="form-input">
+                  <input
+                    type="email"
+                    placeholder="Write your email!"
+                    id="write_your_email"
+                    required={true}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                    }}
+                  />
+                  <label htmlFor="write_your_email">Write your email!</label>
+                </div>
+                <div className="border_bottom"></div>
+
+                <div className="forgot_password_submit_btn">
+                  <button type="submit">Send Link</button>
+                </div>
+                <div className="border_bottom"></div>
+              </form>
+            </div>
+
+            {loader && <div>{<InfoLoader />}</div>}
+            <div id="link_msg"></div>
+          </div>
+        </div>
       )}
     </>
   );

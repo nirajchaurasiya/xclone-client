@@ -16,5 +16,11 @@ const Loader = () => {
     </div>
   );
 };
-
+export const InfoLoader = () => {
+  return (
+    <div className="inloader-container">
+      <div className="inloader"></div>
+    </div>
+  );
+};
 export default Loader;
