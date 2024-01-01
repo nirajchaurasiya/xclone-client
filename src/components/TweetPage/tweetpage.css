@@ -195,7 +195,7 @@
 
 .comment_name_username_time .cmt_name_details {
   display: flex;
-  gap: 5px;
+  flex-direction: column;
 }
 
 .cmt_name {

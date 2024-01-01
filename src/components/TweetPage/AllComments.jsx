@@ -1,4 +1,5 @@
 import React from "react";
+import { VerifiedAcccount } from "../../TweetCard/TweetCard";
 
 export default function AllComments({
   specifictweetPage,
@@ -29,14 +30,27 @@ export default function AllComments({
                   to={`/p/${comment?.authorUsername}`}
                   className="cmt_name_details"
                 >
-                  <div className="cmt_name">
+                  <div
+                    className="cmt_name"
+                    style={{ display: "flex", gap: "5px" }}
+                  >
                     <p>{comment?.authorName}</p>
+                    <p
+                      title="Verified"
+                      style={{ width: "15px", marginTop: "2px" }}
+                    >
+                      <VerifiedAcccount />
+                    </p>
                   </div>
-                  <div className="cmt_username">
-                    <p>@{comment?.authorUsername}</p>
-                  </div>
-                  <div className="cmt_time">
-                    <p>{customTimeFormat(comment?.commenttime)}</p>
+                  <div style={{ display: "flex", gap: "5px" }}>
+                    <div className="cmt_username">
+                      <p>
+                        @{comment?.authorUsername} {" • "}
+                      </p>
+                    </div>
+                    <div className="cmt_time">
+                      <p>{customTimeFormat(comment?.commenttime)}</p>
+                    </div>
                   </div>
                 </Link>
                 <div
