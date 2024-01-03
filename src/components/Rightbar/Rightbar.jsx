@@ -15,7 +15,7 @@ export default function Rightbar() {
         <SuggestionFollowers />
         <SuggestionsFriendFollowing />
         <PremiumBox feedback />
-        <PremiumBox social />
+        {/* <PremiumBox social /> */}
       </div>
     </div>
   );
