@@ -132,7 +132,6 @@ export default function SingleMessagesBox({ socket }) {
                   onClick={() => navigate(`/p/${profileData?.username}`)}
                 >
                   <div className="message_user_profile">
-                    ``
                     <img src={profileData?.profilepicture} alt="" />
                   </div>
                   <div className="messsage_username_name">
